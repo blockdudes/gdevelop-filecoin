@@ -6,6 +6,7 @@
   "homepage": ".",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
     "@babel/preset-env": "^7.22.14",
     "@babel/preset-react": "^7.22.5",
     "@lingui/cli": "^2.7.3",
@@ -116,7 +117,7 @@
     "import-resources": "npm run import-zipped-external-editors && npm run build-theme-resources && cd scripts && node import-libGD.js && node import-GDJS-Runtime.js && node import-monaco-editor.js && node import-zipped-external-libs.js",
     "make-version-metadata": "cd scripts && node make-version-metadata.js",
     "make-service-worker": "cd scripts && node make-service-worker.js",
-    "start": "npm run import-resources && npm run make-version-metadata && react-scripts start",
+    "start": "npm run import-resources && npm run make-version-metadata && craco start",
     "electron-app": "cd ../electron-app && npm run start",
     "build": "npm run import-resources && npm run make-version-metadata && react-scripts build && npm run make-service-worker",
     "format": "prettier --write \"src/!(locales)/**/*.js\"",
