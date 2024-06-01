@@ -16,6 +16,7 @@ import IconButton from '../../../UI/IconButton';
 import { isNativeMobileApp } from '../../../Utils/Platform';
 import NotificationChip from '../../../UI/User/NotificationChip';
 import { useResponsiveWindowSize } from '../../../UI/Responsive/ResponsiveWindowMeasurer';
+import { Web3ProviderContext } from '../../../Context/Store';
 const electron = optionalRequire('electron');
 
 type Props = {|
@@ -36,6 +37,13 @@ export const HomePageHeader = ({
   canSave,
 }: Props) => {
   const { isMobile } = useResponsiveWindowSize();
+  const { walletConnect, signer, address } = React.useContext(
+    Web3ProviderContext
+  );
+
+  const handleWalletConnect = () => {
+    walletConnect();
+  };
 
   return (
     <I18n>
@@ -74,14 +82,14 @@ export const HomePageHeader = ({
           </Column>
           <Column>
             <LineStackLayout noMargin alignItems="center">
-              {!electron && !isNativeMobileApp() && (
-                <FlatButton
-                  label={<Trans>Get the app</Trans>}
-                  onClick={() =>
-                    Window.openExternalURL('https://gdevelop.io/download')
-                  }
-                />
+              {signer ? (
+                <FlatButton label={<Trans>{address}</Trans>} />
+              ) : (
+                <button onClick={() => handleWalletConnect()}>
+                  ConnectWallet
+                </button>
               )}
+
               <UserChip onOpenProfile={onOpenProfile} />
               <NotificationChip />
               {isMobile ? (

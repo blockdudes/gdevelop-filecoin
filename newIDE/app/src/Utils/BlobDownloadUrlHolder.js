@@ -1,5 +1,13 @@
 // @flow
 import * as React from 'react';
+import { Web3ProviderContext } from '../Context/Store';
+import { configure, fs } from '@zenfs/core';
+import { Zip } from '@zenfs/zip';
+import {
+  publishGame,
+  uploadImageToIPFS,
+} from '../helperFunctions/gameHelperFunctions';
+import { ethers } from 'ethers';
 
 type Props = {
   blob: ?Blob,
@@ -9,6 +17,27 @@ type Props = {
 export const BlobDownloadUrlHolder = ({ blob, children }: Props) => {
   const [blobDownloadUrl, setBlobDownloadUrl] = React.useState('');
   const [currentBlob, setCurrentBlob] = React.useState<?Blob>(null);
+
+  const {
+    contractInstance,
+    walletConnect,
+    signer,
+    getContractInstance,
+    gameData,
+    setIsGamePublished,
+  } = React.useContext(Web3ProviderContext);
+
+  function blobToFileList(blob: Blob, fileName): FileList {
+    const dataTransfer = new DataTransfer(); // Create a new DataTransfer instance
+    const file = new File([blob], fileName, {
+      type: blob.type,
+      lastModified: new Date().getTime(), // Use the current timestamp as the last modified time
+    });
+
+    dataTransfer.items.add(file); // Add the File object to the DataTransfer object
+    return dataTransfer.files; // Return the FileList from the DataTransfer object
+  }
+
   React.useEffect(
     () => {
       // This effect function does not look at the blobDownloadUrl, to avoid infinite loops.
@@ -19,6 +48,44 @@ export const BlobDownloadUrlHolder = ({ blob, children }: Props) => {
       }
     },
     [blob, currentBlob]
+  );
+
+  React.useEffect(
+    () => {
+      const publishTofileCoin = async (): FileList => {
+        console.log('blob', blob);
+        if (!blob) return;
+        await configure({
+          mounts: {
+            '/': { backend: Zip, data: await blob.arrayBuffer() },
+          },
+        });
+        const imageBlob = await fs.openAsBlob('/thumbnail.png', {
+          type: 'image/png',
+        });
+        console.log('imageBuffer', imageBlob);
+        const imageUrl = await uploadImageToIPFS(
+          blobToFileList(imageBlob).item(0),
+          signer
+        );
+
+        const res = await publishGame(
+          getContractInstance(),
+          blobToFileList(blob, 'game.zip'),
+          signer,
+          gameData?.name,
+          'ING',
+          ethers.utils.parseEther(gameData?.price),
+          imageUrl
+        );
+        console.log('publish Game', res);
+      };
+
+      setTimeout(() => {
+        publishTofileCoin();
+      }, 1000);
+    },
+    [contractInstance]
   );
 
   React.useEffect(

@@ -18,6 +18,8 @@ import Check from '../../UI/CustomSvgIcons/Check';
 import Help from '../../UI/CustomSvgIcons/Help';
 import RaisedButton from '../../UI/RaisedButton';
 import { type ExportFlowProps } from '../ExportPipeline.flow';
+import { Web3ProviderContext } from '../../Context/Store';
+import { Input } from '@material-ui/core';
 
 const getIconStyle = ({ isMobile }: {| isMobile: boolean |}) => {
   return {
@@ -30,23 +32,37 @@ const getIconStyle = ({ isMobile }: {| isMobile: boolean |}) => {
 export const ExplanationHeader = () => {
   const { isMobile } = useResponsiveWindowSize();
   const iconStyle = getIconStyle({ isMobile });
+
+  const { walletConnect, setGameData, gameData } = React.useContext(
+    Web3ProviderContext
+  );
+  React.useEffect(() => {
+    walletConnect();
+  }, []);
+
+  console.log('gameData', gameData);
   return (
     <Column noMargin>
       <Line>
         <Text align="center">
-          <Trans>
-            This will export your game to a folder. You can then upload it on a
-            website/game hosting service and share it on marketplaces and gaming
-            portals like CrazyGames, Poki, Game Jolt, itch.io, Newgrounds...
-          </Trans>
+          <Input
+            type="text"
+            placeholder="Enter your game name..."
+            value={gameData.name}
+            onChange={e => setGameData({ ...gameData, name: e.target.value })}
+          />
         </Text>
       </Line>
-      <Line justifyContent="center">
-        <ItchIo color="secondary" style={iconStyle} />
-        <GameJolt color="secondary" style={iconStyle} />
-        <Poki color="secondary" style={iconStyle} />
-        <CrazyGames color="secondary" style={iconStyle} />
-        <NewsGround color="secondary" style={iconStyle} />
+
+      <Line>
+        <Text align="center">
+          <Input
+            type="text"
+            placeholder="Enter your game price..."
+            value={gameData.price}
+            onChange={e => setGameData({ ...gameData, price: e.target.value })}
+          />
+        </Text>
       </Line>
     </Column>
   );
@@ -69,9 +85,9 @@ export const ExportFlow = ({
       <RaisedButton
         label={
           !isExporting ? (
-            <Trans>Export as a HTML5 game</Trans>
+            <Trans>upload to filecoin</Trans>
           ) : (
-            <Trans>Exporting...</Trans>
+            <Trans>uploading...</Trans>
           )
         }
         primary
