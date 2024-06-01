@@ -25,7 +25,7 @@ function splitStringToBytes32Array(inputString: string): string[] {
     let bytes32 = ethers.utils.formatBytes32String(chunk);
     bytes32Array.push(bytes32);
   }
-  console.log('Bytes32 Array:', bytes32Array);
+
   return bytes32Array;
 }
 
@@ -48,8 +48,6 @@ const generateApiKey = async (
   //   console.log('return auth message');
   //   return;
   // }
-
-  console.log('verificationMsg', verificationMessage);
 
   const signedMessage = await user.signMessage(verificationMessage);
 
@@ -118,8 +116,6 @@ const addAccessCondition = async (
 
   const userAddress = await user.getAddress();
 
-  console.log(userAddress, cid, signedMessage, accessConditions, aggregator);
-
   // Apply the access condition to the file
   const res = await lighthouse.applyAccessCondition(
     userAddress,
@@ -138,9 +134,6 @@ const getTokenAddress = async (
   user: ethers.providers.JsonRpcSigner,
   contract: ethers.Contract
 ): Promise<string> => {
-  console.log('cid', cid);
-  console.log('user', user);
-  console.log('contract', contract);
   const game: Game = await contract.getGameByCid(cid, { gasLimit: 80000000 });
   return game.token;
 };
@@ -150,21 +143,25 @@ export const uploadImageToIPFS = async (
   image: FileList,
   user: ethers.providers.JsonRpcSigner
 ): Promise<string> => {
-  const apiKey = await generateApiKey(user);
-  // const res = await lighthouse.upload(image, apiKey, false, null);
-  const formData = new FormData();
-  formData.append('file', image);
-  return await axios
-    .post('https://node.lighthouse.storage/api/v0/add', formData, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then(response => {
-      console.log('File uploaded successfully:', response.data);
-      return 'https://gateway.lighthouse.storage/ipfs/' + response.data.Hash;
-    });
+  try {
+    const apiKey = await generateApiKey(user);
+    // const res = await lighthouse.upload(image, apiKey, false, null);
+    const formData = new FormData();
+    formData.append('file', image);
+    return await axios
+      .post('https://node.lighthouse.storage/api/v0/add', formData, {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(response => {
+        console.log('File uploaded successfully:', response.data);
+        return 'https://gateway.lighthouse.storage/ipfs/' + response.data.Hash;
+      });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /**
@@ -182,9 +179,7 @@ export const publishGame = async (
   imageUrl: string
 ): Promise<void> => {
   // Function to sign the authentication message using Wallet
-  console.log('contract', contract);
-  console.log('user', user);
-  console.log('game', game);
+
   const signAuthMessage = async (user: ethers.providers.JsonRpcSigner) => {
     if (window.ethereum) {
       try {

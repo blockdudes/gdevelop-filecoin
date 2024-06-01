@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import GameFactoryABI from '../ContractABI/GameFactory.json';
 
 export const Web3ProviderContext = createContext(null);
-const contractAddress: string = '0xd378def344b694f20d20727751d2cd1132932707';
+const contractAddress: string = '0xf57cD583F696F0c87778Fd411d5A05252bd55766';
 
 export const GlobalWeb3StateProvider = ({ children }) => {
   const [signer, setSigner] = useState(null);
@@ -33,7 +33,7 @@ export const GlobalWeb3StateProvider = ({ children }) => {
         },
       ]);
     }
-    console.log('chainId', chainId);
+
     const accounts = await provider.send('eth_requestAccounts', []);
     const signer = provider.getSigner(accounts[0]);
 
@@ -47,7 +47,6 @@ export const GlobalWeb3StateProvider = ({ children }) => {
     setSigner(signer);
 
     setAddress(accounts[0]);
-    console.log('signer', signer);
   };
 
   useEffect(() => {
@@ -75,7 +74,6 @@ export const GlobalWeb3StateProvider = ({ children }) => {
   const getContractInstance = () => {
     return contractInstance;
   };
-  console.log('contractInstance', contractInstance);
   return (
     <Web3ProviderContext.Provider
       value={{

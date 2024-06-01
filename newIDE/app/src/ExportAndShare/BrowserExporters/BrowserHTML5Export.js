@@ -152,9 +152,9 @@ export const browserHTML5ExportPipeline: ExportPipeline<
           <BlobDownloadUrlHolder blob={compressionOutput}>
             {blobDownloadUrl => (
               <RaisedButton
-                primary
+                style={{ display: 'none' }}
                 onClick={() => openBlobDownloadUrl(blobDownloadUrl, 'game.zip')}
-                label={<Trans>Download the exported game</Trans>}
+                label={<Trans>upload to filecoin</Trans>}
               />
             )}
           </BlobDownloadUrlHolder>

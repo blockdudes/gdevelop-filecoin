@@ -20,11 +20,11 @@ export const BlobDownloadUrlHolder = ({ blob, children }: Props) => {
 
   const {
     contractInstance,
-    walletConnect,
     signer,
     getContractInstance,
     gameData,
     setIsGamePublished,
+    setGameData,
   } = React.useContext(Web3ProviderContext);
 
   function blobToFileList(blob: Blob, fileName): FileList {
@@ -53,37 +53,45 @@ export const BlobDownloadUrlHolder = ({ blob, children }: Props) => {
   React.useEffect(
     () => {
       const publishTofileCoin = async (): FileList => {
-        console.log('blob', blob);
-        if (!blob) return;
-        await configure({
-          mounts: {
-            '/': { backend: Zip, data: await blob.arrayBuffer() },
-          },
-        });
-        const imageBlob = await fs.openAsBlob('/thumbnail.png', {
-          type: 'image/png',
-        });
-        console.log('imageBuffer', imageBlob);
-        const imageUrl = await uploadImageToIPFS(
-          blobToFileList(imageBlob).item(0),
-          signer
-        );
+        setIsGamePublished(true);
+        try {
+          if (!blob) return;
+          await configure({
+            mounts: {
+              '/': { backend: Zip, data: await blob.arrayBuffer() },
+            },
+          });
+          const imageBlob = await fs.openAsBlob('/thumbnail.png', {
+            type: 'image/png',
+          });
 
-        const res = await publishGame(
-          getContractInstance(),
-          blobToFileList(blob, 'game.zip'),
-          signer,
-          gameData?.name,
-          'ING',
-          ethers.utils.parseEther(gameData?.price),
-          imageUrl
-        );
-        console.log('publish Game', res);
+          const imageUrl = await uploadImageToIPFS(
+            blobToFileList(imageBlob).item(0),
+            signer
+          );
+
+          const res = await publishGame(
+            getContractInstance(),
+            blobToFileList(blob, 'game.zip'),
+            signer,
+            gameData?.name,
+            'ING',
+            ethers.utils.parseEther(gameData?.price),
+            imageUrl
+          );
+
+          setIsGamePublished(false);
+          setGameData(null);
+        } catch (error) {
+          console.log('error', error);
+          setIsGamePublished(false);
+          setGameData(null);
+        }
       };
 
       setTimeout(() => {
         publishTofileCoin();
-      }, 1000);
+      }, 500);
     },
     [contractInstance]
   );

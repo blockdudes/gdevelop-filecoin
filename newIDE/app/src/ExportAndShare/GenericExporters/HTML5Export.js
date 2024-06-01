@@ -20,6 +20,7 @@ import RaisedButton from '../../UI/RaisedButton';
 import { type ExportFlowProps } from '../ExportPipeline.flow';
 import { Web3ProviderContext } from '../../Context/Store';
 import { Input } from '@material-ui/core';
+import { BeatLoader } from 'react-spinners';
 
 const getIconStyle = ({ isMobile }: {| isMobile: boolean |}) => {
   return {
@@ -36,19 +37,20 @@ export const ExplanationHeader = () => {
   const { walletConnect, setGameData, gameData } = React.useContext(
     Web3ProviderContext
   );
+
   React.useEffect(() => {
     walletConnect();
   }, []);
 
-  console.log('gameData', gameData);
   return (
     <Column noMargin>
       <Line>
         <Text align="center">
           <Input
             type="text"
+            style={{ width: 250 }}
             placeholder="Enter your game name..."
-            value={gameData.name}
+            value={gameData?.name}
             onChange={e => setGameData({ ...gameData, name: e.target.value })}
           />
         </Text>
@@ -58,8 +60,9 @@ export const ExplanationHeader = () => {
         <Text align="center">
           <Input
             type="text"
-            placeholder="Enter your game price..."
-            value={gameData.price}
+            style={{ width: 250 }}
+            placeholder="Game price in ETH"
+            value={gameData?.price}
             onChange={e => setGameData({ ...gameData, price: e.target.value })}
           />
         </Text>
@@ -103,6 +106,7 @@ export const DoneFooter = ({
 }: {|
   renderGameButton: () => React.Node,
 |}) => {
+  const { isGamePublished } = React.useContext(Web3ProviderContext);
   const openLearnMore = () => {
     Window.openExternalURL(
       getHelpLink(
@@ -115,15 +119,19 @@ export const DoneFooter = ({
     <Column noMargin alignItems="center">
       <LineStackLayout noMargin justifyContent="center" alignItems="center">
         <Check fontSize="small" />
-        <Text>
-          <Trans>Done!</Trans>
-        </Text>
+        {isGamePublished ? (
+          <Text align="center">
+            <Trans>
+              Please wait while your game is being published to FileCoin{' '}
+              <BeatLoader color="white" size={5} />
+            </Trans>
+          </Text>
+        ) : (
+          <Text align="center">
+            <Trans>Your game has been published! </Trans>
+          </Text>
+        )}
       </LineStackLayout>
-      <Text>
-        <Trans>
-          You can now upload the game to a web hosting service to play it.
-        </Trans>
-      </Text>
       <Spacer />
       <ColumnStackLayout justifyContent="center">
         <Line justifyContent="center">{renderGameButton()}</Line>
@@ -135,15 +143,6 @@ export const DoneFooter = ({
         />
       </ColumnStackLayout>
       <Spacer />
-      <Line>
-        <AlertMessage kind="info">
-          <Trans>
-            Your game won't work if you open the index.html file on your
-            computer. You must upload it to a web hosting platform (Itch.io,
-            Poki, CrazyGames etc...) or a web server to run it.
-          </Trans>
-        </AlertMessage>
-      </Line>
     </Column>
   );
 };
