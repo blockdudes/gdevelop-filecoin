@@ -3451,7 +3451,7 @@ const MainFrame = (props: Props) => {
         />
       )}
       {renderOpenConfirmDialog()}
-      {renderLeaderboardReplacerDialog()}
+      {/* {renderLeaderboardReplacerDialog()} */}
       {renderResourceMoverDialog()}
       {renderResourceFetcherDialog()}
       {renderVersionHistoryPanel()}

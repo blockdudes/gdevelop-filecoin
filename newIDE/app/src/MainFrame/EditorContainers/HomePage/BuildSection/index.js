@@ -407,14 +407,14 @@ const BuildSection = ({
         >
           {examplesAndTemplatesToDisplay.gridItems}
         </GridList>
-        <Line justifyContent={'center'}>
+        {/* <Line justifyContent={'center'}>
           <FlatButton
             primary
             fullWidth={isMobile}
             label={<Trans>See more</Trans>}
             onClick={onOpenExampleStore}
           />
-        </Line>
+        </Line> */}
       </SectionRow>
     </SectionContainer>
   ) : (

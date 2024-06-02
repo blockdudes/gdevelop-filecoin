@@ -478,7 +478,7 @@ const PublishHome = ({
       )}
       {chosenSection === 'browser' && !chosenSubSection && (
         <ColumnStackLayout noMargin>
-          <SectionLine
+          {/* <SectionLine
             label={<Trans>gd.games</Trans>}
             icon={getSubSectionIcon('browser', 'online')}
             description={<Trans>Generate a shareable link to your game.</Trans>}
@@ -486,7 +486,7 @@ const PublishHome = ({
             highlighted
             disabled={!isOnline}
             id="publish-gd-games"
-          />
+          /> */}
           {!showOnlineWebExporterOnly && (
             <SectionLine
               label={<Trans>HTML5 (external websites)</Trans>}
@@ -497,7 +497,7 @@ const PublishHome = ({
               id="publish-external-websites"
             />
           )}
-          {!showOnlineWebExporterOnly && (
+          {/* {!showOnlineWebExporterOnly && (
             <SectionLine
               label={<Trans>Facebook Games</Trans>}
               icon={getSubSectionIcon('browser', 'facebook')}
@@ -506,75 +506,10 @@ const PublishHome = ({
               disabled={allExportersRequireOnline && !isOnline}
               id="publish-facebook"
             />
-          )}
+          )} */}
         </ColumnStackLayout>
       )}
-      {chosenSection === 'desktop' && !chosenSubSection && (
-        <ColumnStackLayout noMargin>
-          <SectionLine
-            label={<Trans>One-click packaging</Trans>}
-            icon={getSubSectionIcon('desktop', 'online')}
-            description={<Trans>Windows, MacOS and Linux</Trans>}
-            onClick={() => onChooseSubSection('online')}
-            highlighted
-            disabled={!isOnline}
-            id="publish-desktop-cloud"
-          />
-          <SectionLine
-            label={<Trans>Manual build</Trans>}
-            icon={getSubSectionIcon('desktop', 'offline')}
-            description={<Trans>Development tools required</Trans>}
-            onClick={() => onChooseSubSection('offline')}
-            disabled={allExportersRequireOnline && !isOnline}
-            small
-            id="publish-desktop-manual"
-          />
-        </ColumnStackLayout>
-      )}
-      {chosenSection === 'android' && !chosenSubSection && (
-        <ColumnStackLayout noMargin>
-          <SectionLine
-            label={<Trans>One-click packaging</Trans>}
-            icon={getSubSectionIcon('android', 'online')}
-            description={<Trans>Automated</Trans>}
-            onClick={() => onChooseSubSection('online')}
-            highlighted
-            disabled={!isOnline}
-            id="publish-mobile-cloud"
-          />
-          <SectionLine
-            label={<Trans>Manual build</Trans>}
-            icon={getSubSectionIcon('desktop', 'offline')}
-            description={<Trans>Development tools required</Trans>}
-            onClick={() => onChooseSubSection('offline')}
-            small
-            disabled={allExportersRequireOnline && !isOnline}
-            id="publish-mobile-manual"
-          />
-        </ColumnStackLayout>
-      )}
-      {chosenSection === 'ios' && !chosenSubSection && (
-        <ColumnStackLayout noMargin>
-          <SectionLine
-            label={<Trans>One-click packaging</Trans>}
-            icon={getSubSectionIcon('ios', 'online')}
-            description={<Trans>Automated</Trans>}
-            onClick={() => onChooseSubSection('online')}
-            highlighted
-            disabled={!isOnline}
-            id="publish-ios-cloud"
-          />
-          <SectionLine
-            label={<Trans>Manual build</Trans>}
-            icon={getSubSectionIcon('desktop', 'offline')}
-            description={<Trans>Development tools required</Trans>}
-            onClick={() => onChooseSubSection('offline')}
-            small
-            disabled={allExportersRequireOnline && !isOnline}
-            id="publish-ios-manual"
-          />
-        </ColumnStackLayout>
-      )}
+  
       {chosenSection && chosenSubSection && selectedExporter && (
         <ExportLauncher
           authenticatedUser={authenticatedUser}

@@ -123,18 +123,18 @@ const ShareDialog = ({
   const [currentTab, setCurrentTab] = React.useState<ShareTab>(
     initialTab || getShareDialogDefaultTab()
   );
-  const showOnlineWebExporterOnly = !automatedExporters && !manualExporters;
+  const showOnlineWebExporterOnly =true;
   const [
     chosenExporterSection,
     setChosenExporterSection,
   ] = React.useState<?ExporterSection>(
-    showOnlineWebExporterOnly ? 'browser' : null
+    'browser'
   );
   const [
     chosenExporterSubSection,
     setChosenExporterSubSection,
   ] = React.useState<?ExporterSubSection>(
-    showOnlineWebExporterOnly ? 'online' : null
+    showOnlineWebExporterOnly ? 'offline' : null
   );
 
   React.useEffect(() => setShareDialogDefaultTab(currentTab), [
@@ -263,14 +263,14 @@ const ShareDialog = ({
           exporter ? (
             <HelpButton key="help" helpPagePath={exporter.helpPage} />
           ) : null,
-          <TextButton
-            key="exports"
-            label={
-              isMobile ? <Trans>Exports</Trans> : <Trans>See all exports</Trans>
-            }
-            onClick={openBuildDialog}
-            disabled={isNavigationDisabled || !isOnline}
-          />,
+          // <TextButton
+          //   key="exports"
+          //   label={
+          //     isMobile ? <Trans>Exports</Trans> : <Trans>See all exports</Trans>
+          //   }
+          //   onClick={openBuildDialog}
+          //   disabled={isNavigationDisabled || !isOnline}
+          // />,
         ].filter(Boolean)
       : [
           <HelpButton
@@ -301,12 +301,12 @@ const ShareDialog = ({
               id: 'publish-tab',
               disabled: isNavigationDisabled,
             },
-            {
-              value: 'invite',
-              label: <Trans>Invite</Trans>,
-              id: 'invite-tab',
-              disabled: isNavigationDisabled,
-            },
+            // {
+            //   value: 'invite',
+            //   label: <Trans>Invite</Trans>,
+            //   id: 'invite-tab',
+            //   disabled: isNavigationDisabled,
+            // },
           ]}
         />
       }

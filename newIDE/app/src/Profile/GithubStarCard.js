@@ -41,7 +41,7 @@ export const GithubStarCard = ({ onOpenProfile, achievements }: Props) => {
         />
       )}
     >
-      <ResponsiveLineStackLayout noMargin expand alignItems="stretch">
+      {/* <ResponsiveLineStackLayout noMargin expand alignItems="stretch">
         <ColumnStackLayout alignItems="flex-start" expand noMargin>
           <Text size="block-title">
             <Trans>Star GDevelop on GitHub and win credits</Trans>
@@ -74,7 +74,7 @@ export const GithubStarCard = ({ onOpenProfile, achievements }: Props) => {
             onClick={onOpenProfile}
           />
         </ColumnStackLayout>
-      </ResponsiveLineStackLayout>
+      </ResponsiveLineStackLayout> */}
     </CalloutCard>
   );
 };

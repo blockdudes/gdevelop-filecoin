@@ -101,14 +101,14 @@ const HomePageMenuBar = ({
         <Preferences fontSize={fontSize} color={color} />
       ),
     },
-    {
-      label: <Trans>About GDevelop</Trans>,
-      id: 'about-gdevelop',
-      onClick: onOpenAbout,
-      getIcon: ({ color, fontSize }) => (
-        <GDevelopGLogo fontSize={fontSize} color={color} />
-      ),
-    },
+    // {
+    //   label: <Trans>About GDevelop</Trans>,
+    //   id: 'about-gdevelop',
+    //   onClick: onOpenAbout,
+    //   getIcon: ({ color, fontSize }) => (
+    //     <GDevelopGLogo fontSize={fontSize} color={color} />
+    //   ),
+    // },
   ];
 
   if (isMobile) {

@@ -90,8 +90,8 @@ export const HomePageHeader = ({
                 </button>
               )}
 
-              <UserChip onOpenProfile={onOpenProfile} />
-              <NotificationChip />
+              {/* <UserChip onOpenProfile={onOpenProfile} /> */}
+              {/* <NotificationChip />
               {isMobile ? (
                 <IconButton size="small" onClick={onOpenLanguageDialog}>
                   <TranslateIcon fontSize="small" />
@@ -102,7 +102,7 @@ export const HomePageHeader = ({
                   onClick={onOpenLanguageDialog}
                   icon={<TranslateIcon fontSize="small" />}
                 />
-              )}
+              )} */}
             </LineStackLayout>
           </Column>
         </LineStackLayout>

@@ -43,18 +43,7 @@ const PromotionsSlideshow = ({ type }: PromotionsSlideshowProps) => {
   }
 
   return (
-    <Slideshow
-      items={slideShowItems}
-      itemDesktopRatio={promotionDesktopRatio}
-      itemMobileRatio={promotionMobileRatio}
-      additionalMarginForWidthCalculation={
-        isMobile
-          ? 0
-          : isMediumScreen
-          ? homepageMediumMenuBarWidth + 2 * SECTION_PADDING
-          : homepageDesktopMenuBarWidth + 2 * SECTION_PADDING
-      }
-    />
+    <div></div>
   );
 };
 

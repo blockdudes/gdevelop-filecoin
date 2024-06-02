@@ -41,13 +41,13 @@ export const styles = {
 
 export type HomeTab =
   | 'get-started'
-  | 'manage'
+  // | 'manage'
   | 'build'
-  | 'learn'
-  | 'play'
-  | 'community'
-  | 'shop'
-  | 'team-view';
+  // | 'learn'
+  // | 'play'
+  // | 'community'
+  // | 'shop'
+  // | 'team-view';
 
 export type GetIconFunction = ({
   color: string,
@@ -78,54 +78,54 @@ const homePageMenuTabs: { [tab: string]: HomePageMenuTab } = {
       <PickAxeIcon fontSize={fontSize} color={color} />
     ),
   },
-  manage: {
-    label: <Trans>Manage</Trans>,
-    tab: 'manage',
-    id: 'home-manage-tab',
-    getIcon: ({ color, fontSize }) => (
-      <GraphsIcon fontSize={fontSize} color={color} />
-    ),
-  },
-  shop: {
-    label: <Trans>Shop</Trans>,
-    tab: 'shop',
-    id: 'home-shop-tab',
-    getIcon: ({ color, fontSize }) => (
-      <StoreIcon fontSize={fontSize} color={color} />
-    ),
-  },
-  learn: {
-    label: <Trans>Learn</Trans>,
-    tab: 'learn',
-    id: 'home-learn-tab',
-    getIcon: ({ color, fontSize }) => (
-      <SchoolIcon fontSize={fontSize} color={color} />
-    ),
-  },
-  play: {
-    label: <Trans>Play</Trans>,
-    tab: 'play',
-    id: 'home-play-tab',
-    getIcon: ({ color, fontSize }) => (
-      <GoogleControllerIcon fontSize={fontSize} color={color} />
-    ),
-  },
-  community: {
-    label: <Trans>Community</Trans>,
-    tab: 'community',
-    id: 'home-community-tab',
-    getIcon: ({ color, fontSize }) => (
-      <WebIcon fontSize={fontSize} color={color} />
-    ),
-  },
-  'team-view': {
-    label: <Trans>Classrooms</Trans>,
-    tab: 'team-view',
-    id: 'team-view-tab',
-    getIcon: ({ color, fontSize }) => (
-      <BookLeafIcon fontSize={fontSize} color={color} />
-    ),
-  },
+  // manage: {
+  //   label: <Trans>Manage</Trans>,
+  //   tab: 'manage',
+  //   id: 'home-manage-tab',
+  //   getIcon: ({ color, fontSize }) => (
+  //     <GraphsIcon fontSize={fontSize} color={color} />
+  //   ),
+  // },
+  // shop: {
+  //   label: <Trans>Shop</Trans>,
+  //   tab: 'shop',
+  //   id: 'home-shop-tab',
+  //   getIcon: ({ color, fontSize }) => (
+  //     <StoreIcon fontSize={fontSize} color={color} />
+  //   ),
+  // },
+  // learn: {
+  //   label: <Trans>Learn</Trans>,
+  //   tab: 'learn',
+  //   id: 'home-learn-tab',
+  //   getIcon: ({ color, fontSize }) => (
+  //     <SchoolIcon fontSize={fontSize} color={color} />
+  //   ),
+  // },
+  // play: {
+  //   label: <Trans>Play</Trans>,
+  //   tab: 'play',
+  //   id: 'home-play-tab',
+  //   getIcon: ({ color, fontSize }) => (
+  //     <GoogleControllerIcon fontSize={fontSize} color={color} />
+  //   ),
+  // },
+  // community: {
+  //   label: <Trans>Community</Trans>,
+  //   tab: 'community',
+  //   id: 'home-community-tab',
+  //   getIcon: ({ color, fontSize }) => (
+  //     <WebIcon fontSize={fontSize} color={color} />
+  //   ),
+  // },
+  // 'team-view': {
+  //   label: <Trans>Classrooms</Trans>,
+  //   tab: 'team-view',
+  //   id: 'team-view-tab',
+  //   getIcon: ({ color, fontSize }) => (
+  //     <BookLeafIcon fontSize={fontSize} color={color} />
+  //   ),
+  // },
 };
 
 export const getTabsToDisplay = ({
@@ -146,12 +146,12 @@ export const getTabsToDisplay = ({
   const tabs = [
     'get-started',
     'build',
-    displayTeamViewTab ? 'team-view' : null,
-    'manage',
-    'shop',
-    'learn',
-    displayPlayTab ? 'play' : null,
-    'community',
+    // displayTeamViewTab ? 'team-view' : null,
+    // 'manage',
+    // 'shop',
+    // 'learn',
+    // displayPlayTab ? 'play' : null,
+    // 'community',
   ].filter(Boolean);
   return tabs.map(tab => homePageMenuTabs[tab]);
 };
@@ -192,14 +192,14 @@ export const HomePageMenu = ({
         <Preferences fontSize={fontSize} color={color} />
       ),
     },
-    {
-      label: <Trans>About GDevelop</Trans>,
-      id: 'about-gdevelop',
-      onClick: onOpenAbout,
-      getIcon: ({ color, fontSize }) => (
-        <GDevelopGLogo fontSize={fontSize} color={color} />
-      ),
-    },
+    // {
+    //   label: <Trans>About GDevelop</Trans>,
+    //   id: 'about-gdevelop',
+    //   onClick: onOpenAbout,
+    //   getIcon: ({ color, fontSize }) => (
+    //     <GDevelopGLogo fontSize={fontSize} color={color} />
+    //   ),
+    // },
   ];
 
   return (

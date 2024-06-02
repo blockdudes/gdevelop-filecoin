@@ -133,7 +133,7 @@ export const DoneFooter = ({
         )}
       </LineStackLayout>
       <Spacer />
-      <ColumnStackLayout justifyContent="center">
+      {/* <ColumnStackLayout justifyContent="center">
         <Line justifyContent="center">{renderGameButton()}</Line>
         <FlatButton
           label={<Trans>Learn more about publishing to platforms</Trans>}
@@ -141,7 +141,7 @@ export const DoneFooter = ({
           onClick={openLearnMore}
           leftIcon={<Help />}
         />
-      </ColumnStackLayout>
+      </ColumnStackLayout> */}
       <Spacer />
     </Column>
   );

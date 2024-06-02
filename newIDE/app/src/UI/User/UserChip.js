@@ -43,7 +43,7 @@ const UserChip = ({ onOpenProfile }: Props) => {
     />
   ) : (
     <div style={styles.buttonContainer}>
-      <LineStackLayout noMargin alignItems="center">
+      {/* <LineStackLayout noMargin alignItems="center">
         <RaisedButton
           label={
             <span>
@@ -54,7 +54,7 @@ const UserChip = ({ onOpenProfile }: Props) => {
           primary
           icon={<User fontSize="small" />}
         />
-      </LineStackLayout>
+      </LineStackLayout> */}
     </div>
   );
 };

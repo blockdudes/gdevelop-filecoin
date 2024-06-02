@@ -297,53 +297,53 @@ const RecommendationList = ({
             </SectionRow>
           );
         }
-        if (recommendedVideoTutorials.length) {
-          items.push(
-            <SectionRow key="videos">
-              <ImageTileRow
-                title={<Trans>Get started with game creation</Trans>}
-                margin="dense"
-                items={recommendedVideoTutorials.map(tutorial =>
-                  formatTutorialToImageTileComponent({
-                    i18n,
-                    limits,
-                    tutorial,
-                    onSelectTutorial: setSelectedTutorial,
-                  })
-                )}
-                getColumnsFromWindowSize={getVideoTutorialsColumnsFromWidth}
-                getLimitFromWindowSize={getTutorialsLimitsFromWidth}
-              />
-            </SectionRow>
-          );
-        }
+        // if (recommendedVideoTutorials.length) {
+        //   items.push(
+        //     <SectionRow key="videos">
+        //       <ImageTileRow
+        //         title={<Trans>Get started with game creation</Trans>}
+        //         margin="dense"
+        //         items={recommendedVideoTutorials.map(tutorial =>
+        //           formatTutorialToImageTileComponent({
+        //             i18n,
+        //             limits,
+        //             tutorial,
+        //             onSelectTutorial: setSelectedTutorial,
+        //           })
+        //         )}
+        //         getColumnsFromWindowSize={getVideoTutorialsColumnsFromWidth}
+        //         getLimitFromWindowSize={getTutorialsLimitsFromWidth}
+        //       />
+        //     </SectionRow>
+        //   );
+        // }
 
-        if (onStartSurvey && hasFilledSurveyAlready)
-          items.push(
-            <SectionRow key="start-survey">
-              <SurveyCard
-                onStartSurvey={onStartSurvey}
-                hasFilledSurveyAlready
-              />
-            </SectionRow>
-          );
+        // if (onStartSurvey && hasFilledSurveyAlready)
+        //   items.push(
+        //     <SectionRow key="start-survey">
+        //       <SurveyCard
+        //         onStartSurvey={onStartSurvey}
+        //         hasFilledSurveyAlready
+        //       />
+        //     </SectionRow>
+        //   );
 
-        items.push(
-          <SectionRow key="promotions">
-            <Text size="section-title" noMargin>
-              <Trans>Discover the ecosystem</Trans>
-            </Text>
-            <Spacer />
-            <PromotionsSlideshow />
-            <Spacer />
-            {shouldDisplayGithubStarCard({ badges }) && (
-              <GithubStarCard
-                achievements={achievements}
-                onOpenProfile={onOpenProfile}
-              />
-            )}
-          </SectionRow>
-        );
+        // items.push(
+        //   <SectionRow key="promotions">
+        //     <Text size="section-title" noMargin>
+        //       <Trans>Discover the ecosystem</Trans>
+        //     </Text>
+        //     <Spacer />
+        //     <PromotionsSlideshow />
+        //     <Spacer />
+        //     {shouldDisplayGithubStarCard({ badges }) && (
+        //       <GithubStarCard
+        //         achievements={achievements}
+        //         onOpenProfile={onOpenProfile}
+        //       />
+        //     )}
+        //   </SectionRow>
+        // );
 
         if (recommendedTextTutorials.length) {
           items.push(

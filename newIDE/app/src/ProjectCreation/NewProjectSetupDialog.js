@@ -157,16 +157,19 @@ const NewProjectSetupDialog = ({
   );
   const [allowPlayersToLogIn, setAllowPlayersToLogIn] = React.useState<boolean>(
     // Enable player login by default for new games, unless a tutorial is running or offline.
-    !!currentlyRunningInAppTutorial || !isOnline ? false : true
+    false
   );
   const newProjectsDefaultFolder = app
     ? findEmptyPathInWorkspaceFolder(app, values.newProjectsDefaultFolder || '')
     : '';
   const [storageProvider, setStorageProvider] = React.useState<StorageProvider>(
     () => {
+      console.log(storageProviders)
       const localFileStorageProvider = storageProviders.find(
         ({ internalName }) => internalName === 'LocalFile'
       );
+      console.log(localFileStorageProvider)
+      return emptyStorageProvider;
       const cloudStorageProvider = storageProviders.find(
         ({ internalName }) => internalName === 'Cloud'
       );
@@ -535,7 +538,7 @@ const NewProjectSetupDialog = ({
               })}
             {isStartingProjectFromScratch && (
               <ColumnStackLayout noMargin expand>
-                <DismissableAlertMessage
+                {/* <DismissableAlertMessage
                   kind="info"
                   identifier="new-generate-project-from-prompt"
                 >
@@ -584,7 +587,7 @@ const NewProjectSetupDialog = ({
                       </IconButton>
                     }
                   />
-                </LineStackLayout>
+                </LineStackLayout> */}
                 {authenticatedUser.authenticated &&
                   !canGenerateProjectFromPrompt && (
                     <GetSubscriptionCard subscriptionDialogOpeningReason="Generate project from prompt">

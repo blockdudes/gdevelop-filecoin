@@ -199,6 +199,7 @@ export const getExampleAndTemplateItemsForBuildSection = ({
   carouselItems: Array<CarouselThumbnail>,
   gridItems: Array<React.Node>,
 |} => {
+  console.log(exampleShortHeaders)
   if (!exampleShortHeaders || !privateGameTemplateListingDatas) {
     return { carouselItems: [], gridItems: [] };
   }
@@ -217,9 +218,7 @@ export const getExampleAndTemplateItemsForBuildSection = ({
     i < numberOfItemsInGrid + numberOfItemsExclusivelyInCarousel;
     ++i
   ) {
-    const shouldAddPrivateGameTemplate =
-      i % privateGameTemplatesPeriodicity ===
-      privateGameTemplatesPeriodicity - 1;
+    const shouldAddPrivateGameTemplate = false;
 
     // At one point, we might run out of private game templates to display while
     // it is assumed that we have enough examples to display. This boolean is used
@@ -256,6 +255,8 @@ export const getExampleAndTemplateItemsForBuildSection = ({
               receivedGameTemplate =>
                 receivedGameTemplate.id === privateGameTemplateListingData.id
             );
+
+            console.log(privateGameTemplateListingData)
           gridItems.push(
             <PrivateGameTemplateTile
               privateGameTemplateListingData={privateGameTemplateListingData}

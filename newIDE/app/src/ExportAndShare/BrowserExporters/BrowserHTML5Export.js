@@ -154,7 +154,7 @@ export const browserHTML5ExportPipeline: ExportPipeline<
               <RaisedButton
                 style={{ display: 'none' }}
                 onClick={() => openBlobDownloadUrl(blobDownloadUrl, 'game.zip')}
-                label={<Trans>upload to filecoin</Trans>}
+                label={<Trans>Upload to filecoin</Trans>}
               />
             )}
           </BlobDownloadUrlHolder>

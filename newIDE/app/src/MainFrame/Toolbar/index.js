@@ -120,7 +120,7 @@ export default React.forwardRef<MainFrameToolbarProps, ToolbarInterface>(
       <Toolbar borderBottomColor={borderBottomColor}>
         {props.showProjectButtons ? (
           <>
-            <LeftButtonsToolbarGroup
+            {/* <LeftButtonsToolbarGroup
               toggleProjectManager={props.toggleProjectManager}
               onSave={props.onSave}
               canSave={props.canSave}
@@ -128,7 +128,7 @@ export default React.forwardRef<MainFrameToolbarProps, ToolbarInterface>(
               checkedOutVersionStatus={props.checkedOutVersionStatus}
               onQuitVersionHistory={props.onQuitVersionHistory}
               canQuitVersionHistory={props.canQuitVersionHistory}
-            />
+            /> */}
             <ToolbarGroup>
               <Spacer />
               <PreviewAndShareButtons

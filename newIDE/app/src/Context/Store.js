@@ -21,13 +21,14 @@ export const GlobalWeb3StateProvider = ({ children }) => {
 
     if (chainId !== 97) {
       //add chain
-      await provider.send('wallet_addEthereumChain', [
+      await provider.send("wallet_addEthereumChain", [
         {
-          chainId: '0x61',
-          chainName: 'BNB Smart Chain Testnet',
-          rpcUrls: ['https://endpoints.omniatech.io/v1/bsc/testnet/public'],
+          chainId: "0x61",
+          chainName: "BNB Smart Chain Testnet",
+          rpcUrls: ["https://bsc-testnet-rpc.publicnode.com"],
+          blockExplorerUrls: ["https://testnet.bscscan.com"],
           nativeCurrency: {
-            symbol: 'tBNB',
+            symbol: "tBNB",
             decimals: 18,
           },
         },
