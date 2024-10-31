@@ -49,8 +49,8 @@
     "@material-ui/icons": "4.9.1",
     "@material-ui/lab": "4.0.0-alpha.56",
     "@supercharge/promise-pool": "^1.6.0",
-    "@zenfs/core": "^0.12.9",
-    "@zenfs/zip": "^0.4.5",
+    "@zenfs/core": "^1.0.0",
+    "@zenfs/zip": "^0.5.0",
     "algoliasearch": "3.33.0",
     "axios": "^1.6.8",
     "blueimp-md5": "^2.10.0",
@@ -100,7 +100,8 @@
     "source-map-explorer": "^2.0.1",
     "three": "0.160.0",
     "url-search-params": "^1.0.2",
-    "xxhashjs": "^0.2.2"
+    "xxhashjs": "^0.2.2",
+    "@zenfs/dom": "^1.0.0"
   },
   "overrides": {
     "pixi-spine": {
